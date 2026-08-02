@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="Tunnel Toolchain — a 3D voxel module editor in TypeScript and Three.js paired with a Python maze generator that writes tunnel systems directly into a Minecraft world save.">
+<title>Tunnel Toolchain — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>Tunnel Toolchain</h1>
+    <p class="case-tagline">A 3D voxel editor for designing reusable Minecraft room modules, paired with a Python generator that carves a maze out of them and writes the result straight into a real world save.</p>
+    <div class="case-meta">
+      <span class="tag">TypeScript</span><span class="tag">Three.js</span><span class="tag">Vite</span>
+      <span class="tag">Python 3.12</span><span class="tag">JSON Schema</span><span class="tag">amulet-core / NBT</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/Minecraft-Tunnel-Generator" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/tunnel/hero.png" alt="The Modules tab: a tunnel module open in the 3D voxel editor with the block palette, hotbar and connector panel" loading="lazy">
+      <figcaption>The Modules tab — designing a corridor module, with the 996-block palette and the six connector faces.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> 3D module editor</h3>
+          <p>Design small reusable rooms and corridors in a Three.js viewport, then tag which of their six faces can connect to other modules. Box tools preview a fill as translucent blocks with a live count before anything is committed.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/tunnel/editor-3d.png" alt="A box fill pending in the editor, shown as translucent preview blocks with a block count" loading="lazy">
+          <figcaption>A pending box — nothing is written until Enter.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> 2D floor-plan view</h3>
+          <p>A top-down plan of the current layer, much faster than the 3D view for laying out walls, with the layer below ghosted through so shafts and openings line up.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/tunnel/editor-2d.png" alt="The 2D floor-plan view with the layer below showing through faintly" loading="lazy">
+          <figcaption>Layer-by-layer plan view.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Seeded maze generation</h3>
+          <p>A <strong>Growing Tree</strong> algorithm carves the layout, with one parameter spanning randomized DFS and Prim's. Same seed, same modules, same pins gives byte-identical output — so you can change one knob and diff the result.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/tunnel/layout-map.png" alt="The Layout tab showing a generated maze map with legend, seed and pinned rooms" loading="lazy">
+          <figcaption>The Layout tab. Click a room to inspect it, double-click to pin it.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Rotation-aware module fitting</h3>
+          <p>Carving fixes exactly which faces each room must open on. A backtracking solver then places a module only if some rotation of it opens on those faces and its connector labels match its neighbours'. When no module fits, the error names the room, the shape needed, every shape the library offers, and which setting to change.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Procedural variation</h3>
+          <p>Five module shapes cover a flat maze, so weathering scatters different blocks per 3×3×3 patch to stop forty rooms reading as copy-paste, and furniture adds half-walls, alcoves and pillars. It never touches air — that's what the doorways are made of — and every room is flood-filled from each doorway afterwards, so a partition can't silently seal it.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> Live world editing</h3>
+          <p>A third tab opens one of your actual Minecraft worlds, takes a working copy so the original is never written to, and lets you edit the real terrain in the same 3D view — place blocks, select a box, move it, save back.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">07</span> Writes into the save</h3>
+          <p>The output isn't a schematic — the generator writes region data directly via <code>amulet-core</code>, backing the save up first and touching only the cells that changed. A dry run produces the full coordinate manifest without opening anything.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>I built this because hand-placing a backrooms-style tunnel system under a Minecraft village for a video series meant thousands of blocks that would be thrown away the moment I changed the layout. It's two programs — a Vite/TypeScript/Three.js editor and a Python CLI — that can't drift apart because they share one JSON Schema and the GUI drives the CLI rather than reimplementing it. The interesting engineering was less the maze than the fit: turning "this room needs north, south and up open" into a rotated module with matching connectors, and making the failure legible when no module fits.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="youtube-toolkit.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">YouTube Channel Toolkit</div>
+    </a>
+    <a class="next" href="clipforge.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">ClipForge</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

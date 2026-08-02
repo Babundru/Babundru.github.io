@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="ClipForge — a fully offline video-to-shorts pipeline. Local Whisper transcription, local LLM scoring, MediaPipe reframing and ffmpeg export, with a CPU or AMD-GPU backend.">
+<title>ClipForge — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>ClipForge</h1>
+    <p class="case-tagline">A fully offline "Opus Clips" clone. Feed it a long video and it finds the most engaging moments, reframes them to 9:16, burns in word-by-word captions, and exports ready-to-post clips — without a byte leaving the machine.</p>
+    <div class="case-meta">
+      <span class="tag">Python</span><span class="tag">faster-whisper</span><span class="tag">whisper.cpp / Vulkan</span>
+      <span class="tag">MediaPipe</span><span class="tag">ffmpeg</span><span class="tag">Gradio</span><span class="tag">LM Studio</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/ClipForge" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/clipforge/hero.png" alt="The ClipForge UI: compute-mode and content-type radios, model selector, and the clip-selection panel" loading="lazy">
+      <figcaption>The UI — compute mode, content mode, and the clip-selection panel: clip count, runner-up alternates, and the length window.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> Seven-stage local pipeline</h3>
+          <p>Download → transcribe → select → review → reframe → caption → export. Every stage caches to disk keyed by a fast fingerprint of the input video, so re-runs skip completed work. Transcription, clip selection and encoding are all local: faster-whisper or whisper.cpp, a model served by LM Studio, and system ffmpeg.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> Two ways of finding a good moment</h3>
+          <p>For podcasts, a local LLM scores the transcript — chunked to fit the model's context, with JSON repair and retries, then snapped to word boundaries. For gaming VODs the transcript says nothing useful, so it fuses <strong>audio loudness</strong> with <strong>speech excitement</strong> (laughter, shouting, word-rate bursts) into a moment curve and cuts on speech lulls instead. Auto mode probes the video and picks.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Review before export</h3>
+          <p>Selection returns top picks plus unticked alternates as raw 480p previews — no captions, no reframing yet. Trim or widen each clip, read its transcript, keep or drop it. Only then does the expensive rendering run, and only on what you kept.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Auto-reframe to 9:16</h3>
+          <p>MediaPipe face detection samples the clip and builds an EMA-smoothed crop track before any frame is written, so the crop doesn't jitter; it falls back to a centre crop when no face is visible. Gaming clips get a facecam-aware layout instead — the webcam stacked over the gameplay, detected by spatially clustering faces from the full frame plus four upscaled corners.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Caption studio</h3>
+          <p>Seven Opus-style presets across seven animation modes, generated as ASS subtitles and burned in with ffmpeg. Font, size, position, colours and words-per-line are all overridable, with a single burned frame as a live preview.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/clipforge/caption-studio.png" alt="The caption studio panel with font, size, position and colour controls and a live preview frame" loading="lazy">
+          <figcaption>Preview a still before committing to a render.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> CPU or AMD GPU</h3>
+          <p>One switch swaps both ends of the pipeline: faster-whisper to whisper.cpp on Vulkan, and <code>libx264</code> to AMD's hardware <code>h264_amf</code> encoder. Deliberately AMD rather than CUDA, since that's the GPU in the machine.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">07</span> Three interfaces, one pipeline</h3>
+          <p>A native desktop window (Gradio in pywebview, launched by a thin PyInstaller stub), a browser UI, and a one-shot CLI — all sharing the same code and the same cache.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>Cutting shorts out of long videos is the most repetitive job in running a channel, and every tool that does it wants your unreleased footage on their server. Everything needed to do it locally already exists, so this wires it together. The decision that made it usable was where to put the human: the first version was fully automatic and the output wasn't good enough, so the pipeline splits in half and a person reviews cheap 480p cuts before anything gets reframed or encoded.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="tunnel-toolchain.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">Tunnel Toolchain</div>
+    </a>
+    <a class="next" href="albion-gap-finder.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">Albion Gap Finder</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="Albion Gap Finder — a crafting-profit scanner for a live player-driven game economy, with a full fee model, a liquidity-weighted gap score, and historical backtesting.">
+<title>Albion Gap Finder — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>Albion Gap Finder</h1>
+    <p class="case-tagline">A market scanner for a live, player-driven game economy. It models the whole crafting profit chain, ranks opportunities by a liquidity-weighted score, and backtests them against 28 days of history.</p>
+    <div class="case-meta">
+      <span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">pandas</span>
+      <span class="tag">stdlib HTTP server</span><span class="tag">REST</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/Albion-Online-Crafting-Profit-Calculator" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/albion/hero.png" alt="The Albion Gap Finder browser UI showing a completed scan and the Opportunities table" loading="lazy">
+      <figcaption>A completed scan — opportunities ranked by gap score, flagged ★ hot, ◆ niche or ⚠ review.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> The full cost model</h3>
+          <p>"Sell price minus materials" is wrong in five ways, so this models all of them: the transaction tax, the setup fee for placing an order, a station fee scaled by item value, the resource-return rate, and the city crafting bonus — converted into the game's own bonus-pool space rather than approximated. Artifacts and token inputs are correctly excluded from returns.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> A score that discounts illiquidity</h3>
+          <p>Ranking by margin alone surfaces items nobody trades, so the metric is <code>margin% × ln(1 + daily volume)</code>. Rows are flagged rather than filtered — high-margin/high-volume, possible niche, or thin book — leaving the judgement call to the user.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Recipe drill-down</h3>
+          <p>Click any result to see every material with its quantity after resource return, cheapest price and city, and line cost — then the full ledger underneath, sell price in green and each fee in red. Materials drill into their own recipes.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/albion/recipe-modal.png" alt="An item's recipe dialog showing materials, quantity after resource return, and the profit-breakdown ledger" loading="lazy">
+          <figcaption>Where the profit number actually comes from.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> In-game-style item picker</h3>
+          <p>Items are chosen from the game's own shop categories with icons and cascading checkboxes, plus tier ranges and enchantment levels that expand each pick into one scan row per level.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/albion/category-tree.png" alt="The item category tree with icons, cascading checkboxes and tier controls" loading="lazy">
+          <figcaption>Category tree, tier range and enchant buttons.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Backtesting</h3>
+          <p>A margin visible right now might be structural or a five-minute artefact of one mispriced order. Backtest rebuilds daily margins from history and returns a verdict: <strong>persistent</strong>, <strong>intermittent</strong> or <strong>transient</strong>.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/albion/backtest.png" alt="The Backtest tab showing persistence verdicts over 28 days" loading="lazy">
+          <figcaption>28 days of margin history, reduced to one verdict.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> CLI and a zero-framework web app</h3>
+          <p>The browser UI runs on Python's stdlib HTTP server with a single self-contained HTML file — no Flask, no build step, no CDN. Total dependencies for the whole project: <code>requests</code> and <code>pandas</code>. The CLI does everything too, plus CSV and offline HTML reports.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">07</span> Defending against bad data</h3>
+          <p>Prices are crowdsourced, so any listing can be a troll. An outlier guard recomputes profit from the recent volume-weighted average whenever the lowest sell order is more than 3× it. The API client is rate-limited to the published guidance with a sliding window, backoff on 429, and a SQLite cache that makes repeat runs free.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>This is a domain-modelling project disguised as a game tool — the code isn't complicated, but being <em>right</em> is, and every fee is a place where a plausible formula gives an answer that's off by 20%. It's also deliberately honest about its limits: the README has a "read this before trusting silver to it" section covering crowdsourced data gaps and where the station-fee estimate is approximate, because a tool that quantifies money is more dangerous when it hides its error bars.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="clipforge.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">ClipForge</div>
+    </a>
+    <a class="next" href="stock-watcher.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">AI Stock Watcher</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

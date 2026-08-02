@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="YouTube Channel Toolkit — a React/Electron bulk video manager plus three Python utilities built to run an 850K-subscriber channel against the YouTube Data and Analytics APIs.">
+<title>YouTube Channel Toolkit — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>YouTube Channel Toolkit</h1>
+    <p class="case-tagline">Four tools built to run an 850K-subscriber channel without doing everything by hand in YouTube Studio: a React&nbsp;+&nbsp;Electron desktop app for bulk video management, and three focused Python utilities.</p>
+    <div class="case-meta">
+      <span class="tag">React 19</span><span class="tag">Electron</span><span class="tag">Vite</span>
+      <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Tkinter</span>
+      <span class="tag">OAuth 2.0</span><span class="tag">YouTube Data / Analytics API</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/YouTube-Delete-App" target="_blank" rel="noopener">TubeClean on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/youtube/hero.png" alt="TubeClean showing the channel's video grid with several videos selected for deletion" loading="lazy">
+      <figcaption>TubeClean — the whole channel in one grid. YouTube Studio makes you delete one video at a time.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> TubeClean — bulk video manager</h3>
+          <p>A React 19 + Electron desktop app that logs into a channel, pages through the entire uploads playlist 50 at a time, and shows every video as a selectable card. The OAuth flow is a real desktop one — the main process opens the system browser and exchanges the code, so the renderer never touches the client secret. Sessions persist across launches.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> Handles the API's daily quota</h3>
+          <p>Deletion is expensive against YouTube's quota. Rather than surfacing a raw <code>quotaExceeded</code> error, the app detects that reason code and shows a live countdown to the reset at midnight Pacific, converted properly rather than hardcoded.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Uploader</h3>
+          <p>A Streamlit front end over the Data API's resumable upload endpoint: drag a file in, fill metadata, publish now or schedule (local time converted to UTC automatically). Uploads are chunked and resumable with backoff, so a 4GB file doesn't restart on a blip.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Analytics dashboard</h3>
+          <p>Pulls channel performance for a date range into four tabs — core stats, engagement, revenue, cards. Each group is queried separately on purpose, since the API rejects some metric combinations and revenue needs a scope you may not have; one failing group doesn't take the others down. Exports to CSV.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Title changer</h3>
+          <p>A minimal CLI for fixing a title without touching anything else. It exists because <code>videos.update</code> replaces the entire snippet — send one containing only a title and you've just erased the description, tags and category. So it fetches the current snippet, mutates one field, and round-trips the rest untouched.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>These are the projects where I was my own user, and it shows in the error handling — every non-obvious state has a screen that explains it, because I'm the person who hit each one at 1am and had to work it out from a raw JSON error. Working against someone else's API is mostly about respecting its constraints: the quota is finite, uploads fail mid-flight, <code>update</code> replaces rather than patches. I picked the stack per tool rather than per developer, which is why one is Electron and two are 200-line Python scripts.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="signal-vs-noise.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">Signal vs. Noise</div>
+    </a>
+    <a class="next" href="tunnel-toolchain.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">Tunnel Toolchain</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

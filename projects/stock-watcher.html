@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="AI Stock Watcher — a desktop app that scans financial news, has a local Ollama model judge each article's market impact, and pushes a phone notification only on genuine signal.">
+<title>AI Stock Watcher — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>AI Stock Watcher</h1>
+    <p class="case-tagline">A desktop app that continuously scans financial news, has a local language model judge whether each article could actually move a price, and pushes a notification to my phone when it finds something significant.</p>
+    <div class="case-meta">
+      <span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">Ollama</span>
+      <span class="tag">RSS / scraping</span><span class="tag">ntfy.sh</span><span class="tag">yfinance</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/AI-Stock-Watcher" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/stocks/hero.png" alt="The Alerts tab showing alert cards with company, ticker, impact badge, sentiment and analyst explanation" loading="lazy">
+      <figcaption>The Alerts tab — company, ticker, impact badge, sentiment, explanation, and a link to the source.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> A local model does the judging</h3>
+          <p>Every article goes to an Ollama model running on the machine. It's asked first whether the news could move a price at all — routine reports, rehashes and opinion get rejected — then, for what survives, to name the affected company, ticker, sentiment, impact rating and a short explanation. No API keys, no accounts, nothing sent to a cloud service.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> A high bar for interrupting you</h3>
+          <p>You're only notified when sentiment is clearly positive or negative <strong>and</strong> impact is HIGH or CRITICAL. Everything else is logged and dropped. Most articles produce no alert, which is the point — a notifier that fires often is a notifier you mute.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Offline keyword fallback</h3>
+          <p>Flip one flag and a weighted-keyword scorer replaces the LLM — no model needed, instant. It weights headline mentions far above body text, handles negation, and its ~200-term vocabulary is editable in-app.</p>
+        </div>
+        <figure class="shot">
+          <img src="../images/stocks/logs.png" alt="The Logs tab with colour-coded activity and the AI traffic toggle enabled" loading="lazy">
+          <figcaption>Colour-coded logs, with an optional view of the full prompt and reply.</figcaption>
+        </figure>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Sources that detect themselves</h3>
+          <p>Paste a name and URL and it works out the type: RSS feeds are parsed, web pages are checked for a feed link then scraped, and X profile URLs are rewritten to a Nitter mirror. Changes apply to a running watcher without a restart.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Portfolio-aware relevance</h3>
+          <p>Holdings are tracked with live prices and P/L, and named in the prompt as higher relevance. Owning a stock doesn't change whether you get alerted — it just tags negative alerts <code>Owned</code> so risk to your holdings stands out.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> Private by default</h3>
+          <p>Alerts go out over ntfy.sh, where a topic is a public channel — so there's no default topic and push is off until you set one. Ownership disclosure is off too: the <code>[OWNED]</code> marker would tell anyone reading that topic which stocks you actually hold.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>Financial news is almost entirely noise, and filtering it is a judgement problem — which is what a language model is for. Since the input includes my own holdings, it runs locally. The hard part of an alerting system turned out to be deciding <em>not</em> to alert: long silent stretches are the expected behaviour, so the UI had to make "working but quiet" visibly different from "broken". The README also states plainly that a small local model can misread an article or invent a ticker, because for a tool that touches money that disclosure is part of the product.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="albion-gap-finder.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">Albion Gap Finder</div>
+    </a>
+    <a class="next" href="signal-vs-noise.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">Signal vs. Noise</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

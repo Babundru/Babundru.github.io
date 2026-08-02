@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="Signal vs. Noise — a Hackitall 2 (P&G) entry: an eight-layer corporate-intelligence pipeline that scores how much to trust a news article about a company and radars supply-chain risk.">
+<title>Signal vs. Noise — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <p class="eyebrow">// hackathon · april 2026</p>
+    <h1>Signal vs. Noise</h1>
+    <p class="case-tagline">Our entry for Hackitall 2, a Procter &amp; Gamble challenge on corporate search. An eight-layer pipeline that reads news about a company, scores how much of it deserves to be believed, and radars supply-chain risk.</p>
+    <div class="case-meta">
+      <span class="tag">FastAPI</span><span class="tag">spaCy</span><span class="tag">Pydantic</span>
+      <span class="tag">OpenRouter / Gemini</span><span class="tag">SerpAPI</span><span class="tag">Leaflet</span>
+    </div>
+    <div class="case-links">
+      <span class="repo-note">Team repo — private to the hackathon organisation</span>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/signal/hero.png" alt="A completed Signal vs. Noise analysis card with composite trust score, ESG score and AI summary" loading="lazy">
+      <figcaption>A finished analysis — composite trust score, system verdict, ESG rating and summary.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> An eight-layer pipeline</h3>
+          <p>Scrape and NER → URL trust classifier → signal scorer → claim classifier (fact / inference / opinion) → verification against past analyses → composite trust score → risk radar → persistent company memory. Each layer is a separate module with one job, and the whole response is a typed Pydantic model.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> A trust score that isn't a vibe</h3>
+          <p>The final score is an explicit weighted sum — 30% source reputation, 30% signal density, 20% claim type, 20% verification status — rather than a number asked of a model. That means it can be argued with: a low score reads as "unknown blog, low signal density, opinion, single-source", not "the AI is unsure".</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> Context windows, not raw text</h3>
+          <p>The signal scorer builds a ±3-sentence window around every financial trigger term, and <em>those</em> are what the LLM receives. It strips boilerplate, cuts token cost enough to make a ten-source run feasible, and gives the model concentrated evidence.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Risk radar with negation</h3>
+          <p>Five risk categories scanned <em>without</em> the LLM, so the signal doesn't inherit its failure modes. "Avoided bankruptcy" and "declared bankruptcy" share a keyword, so a negation factor zeroes denied risks — and surfaces them separately as strengths.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> Geographic risk mapping</h3>
+          <p>Location entities from the NER pass are attached to the risks that mention them and plotted on a Leaflet map, colour-coded by severity — so a supply-chain risk reads as a place, not a row.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> Human-in-the-loop and memory</h3>
+          <p>Keyword-driven detection produces false positives, so every risk row has a button that permanently down-weights that anchor — 10% per report, capped at −70%, so a term can be de-emphasised but never silenced. Meanwhile each company's profile persists between sessions, and only gets overwritten when the model returns something <em>more</em> specific, so a thin article can't wipe a good profile.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>The obvious build — scrape news, feed it to an LLM, print the summary — fails because the internet lies at different rates depending on where you're reading, and a Reuters piece and an anonymous blog post produce equally confident summaries. So we inverted it: source reputation, signal density, claim classification, corroboration and risk scoring are all deterministic code, and the model only does the reading comprehension. That split is why every number on screen traces back to the layer that produced it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="stock-watcher.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">AI Stock Watcher</div>
+    </a>
+    <a class="next" href="youtube-toolkit.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">YouTube Channel Toolkit</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="Portfolio of Andrei-Sebastian Bucur — Computer Engineering student and content creator building systems software and audiences.">
+<meta property="og:title" content="Andrei-Sebastian Bucur — Engineer & Creator">
+<meta property="og:description" content="Six shipped projects: a Minecraft world-generation toolchain, an offline video pipeline, a market-gap scanner, a local-LLM news watcher, and channel tooling for 850K+ subscribers.">
+<meta property="og:type" content="website">
+<title>Andrei-Sebastian Bucur — Engineer &amp; Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#creator">Creator</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="eyebrow">// hi, i'm</p>
+    <h1>Andrei-Sebastian <em>Bucur</em></h1>
+    <p class="hero-role">Computer Engineering Student &amp; Content Creator</p>
+    <p class="lede"></p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">View my work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <p class="sec-eyebrow">01 — ABOUT</p>
+    <h2 class="sec-title">Engineer by training, creator by habit</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a <strong>Computer Engineering</strong> student at <strong>Politehnica Bucharest</strong>, passionate about applied AI, clean architecture, and software that actually gets used. Most of my projects started as problems I had and finished as tools I use and I'm always looking to expand what I know. From local-LLM pipelines and procedural world generation to full-stack desktop apps, I enjoy breaking down complex problems and turning ideas into reliable, well-crafted software.</p>
+        <p>Alongside university, I run a <strong>self-employed content business</strong> that I've grown to over 850k followers and 530M+ views. That means I've had to be my own engineer, analyst, and strategist: automating publishing and metadata with Python and JavaScript against the YouTube Data and Analytics APIs, reading performance data, and shipping consistently to a real audience.</p>
+        <p>What I bring to a team is that combination — the discipline to design a system end to end, and the product sense of someone who has watched millions of people react to their work.</p>
+      </div>
+      <div class="fact-card reveal">
+        <h3>Quick facts</h3>
+        <ul>
+          <li>B.Eng. Automatic Control &amp; Computer Engineering, UPB (2024–2028)</li>
+          <li>Coursework: OOP, Algorithm Design, Web Tech, OS, Optimization, Numerical Methods</li>
+          <li>Self-employed content creator (PFA) since 2025</li>
+          <li>English (fluent), Romanian (native)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <p class="sec-eyebrow">02 — PORTFOLIO</p>
+    <h2 class="sec-title">Featured projects</h2>
+    <p class="sec-sub">Systems, pipelines, and tools built to solve problems I actually had — for a narrative Minecraft series, a trading habit, a hackathon, and a growing channel. Each one opens a full write-up with screenshots.</p>
+    <div class="proj-grid">
+
+      <a class="card featured reveal" href="projects/tunnel-toolchain.html">
+        <div class="feat-label">FEATURED</div>
+        <div class="card-top"><h3>Tunnel Toolchain</h3><span class="tag">TypeScript · Three.js · Python</span></div>
+        <div class="card-thumb"><img src="images/tunnel/hero.png" alt="The Tunnel Toolchain module editor" data-ph="images/tunnel/hero.png" loading="lazy"></div>
+        <p>Production tooling for a narrative Minecraft series: a 3D voxel editor for designing reusable tunnel modules, and a Python generator that assembles them into a maze and writes it into a world save.</p>
+        <ul class="hl">
+          <li>Seeded Growing Tree maze carving + rotation-aware module fitting</li>
+          <li>Procedural weathering and furniture, walkability-checked</li>
+          <li>Opens a real world save and edits the terrain in 3D</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Vite</span><span class="tag">JSON Schema</span><span class="tag">amulet-core</span><span class="tag">NBT</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+      <a class="card reveal" href="projects/clipforge.html">
+        <div class="card-top"><h3>ClipForge</h3><span class="tag">Python · Local LLM</span></div>
+        <div class="card-thumb"><img src="images/clipforge/hero.png" alt="The ClipForge desktop app" data-ph="images/clipforge/hero.png" loading="lazy"></div>
+        <p>A fully offline video-to-shorts pipeline: feed it a long video and it transcribes, scores, and reframes the best moments into captioned 9:16 clips — on-device, end to end.</p>
+        <ul class="hl">
+          <li>Seven-stage pipeline, cached per stage by video fingerprint</li>
+          <li>LLM transcript scoring, or signal fusion for gaming VODs</li>
+          <li>Selectable CPU / AMD-GPU backend — Vulkan and AMF</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Whisper</span><span class="tag">MediaPipe</span><span class="tag">ffmpeg</span><span class="tag">Gradio</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+      <a class="card reveal" href="projects/albion-gap-finder.html">
+        <div class="card-top"><h3>Albion Gap Finder</h3><span class="tag">Python · SQLite</span></div>
+        <div class="card-thumb"><img src="images/albion/hero.png" alt="The Albion Gap Finder browser UI" data-ph="images/albion/hero.png" loading="lazy"></div>
+        <p>CLI and local browser UI for finding profitable crafting gaps in a live game economy, modelling the full profit chain and ranking by a liquidity-weighted score.</p>
+        <ul class="hl">
+          <li>Models every tax, fee and resource-return rate in the chain</li>
+          <li>28-day backtest tells you whether a gap was ever real</li>
+          <li>Zero web frameworks — stdlib server, SQLite cache</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">stdlib HTTP</span><span class="tag">pandas</span><span class="tag">REST</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+      <a class="card reveal" href="projects/stock-watcher.html">
+        <div class="card-top"><h3>AI Stock Watcher</h3><span class="tag">Python · Ollama</span></div>
+        <div class="card-thumb"><img src="images/stocks/hero.png" alt="The AI Stock Watcher alerts tab" data-ph="images/stocks/hero.png" loading="lazy"></div>
+        <p>Continuously scans financial news, has a local LLM judge each article's market impact, and pushes a phone notification only when it finds something genuinely significant.</p>
+        <ul class="hl">
+          <li>Two-stage prompt: is this market-moving, then who and how much</li>
+          <li>Offline weighted-keyword scorer as a no-model fallback</li>
+          <li>Holdings never leave the machine, and never enter the alert</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Tkinter</span><span class="tag">RSS</span><span class="tag">ntfy.sh</span><span class="tag">yfinance</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+      <a class="card reveal" href="projects/signal-vs-noise.html">
+        <div class="card-top"><h3>Signal vs. Noise</h3><span class="tag">FastAPI · NLP</span></div>
+        <div class="card-thumb"><img src="images/signal/hero.png" alt="A Signal vs. Noise analysis card" data-ph="images/signal/hero.png" loading="lazy"></div>
+        <p>Hackitall 2 (P&amp;G) entry: an eight-layer corporate-intelligence pipeline that scrapes news about a company, scores how much to trust it, and radars supply-chain risk.</p>
+        <ul class="hl">
+          <li>Composite trust score from source, signal, claim type and corroboration</li>
+          <li>Risk scoring with negation detection and source weighting</li>
+          <li>Flagging a false positive permanently down-weights that anchor</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">spaCy</span><span class="tag">Pydantic</span><span class="tag">Gemini</span><span class="tag">Leaflet</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+      <a class="card reveal" href="projects/youtube-toolkit.html">
+        <div class="card-top"><h3>YouTube Channel Toolkit</h3><span class="tag">React · Electron · Python</span></div>
+        <div class="card-thumb"><img src="images/youtube/hero.png" alt="TubeClean, the bulk video manager" data-ph="images/youtube/hero.png" loading="lazy"></div>
+        <p>Four tools built to run an 850K-subscriber channel without doing everything by hand in YouTube Studio — a desktop bulk manager plus three focused Python utilities.</p>
+        <ul class="hl">
+          <li>TubeClean: React 19 + Electron, with a desktop Google OAuth flow</li>
+          <li>Handles pagination, daily quota, and snippet round-tripping</li>
+          <li>Streamlit uploader with resumable upload and scheduled publishing</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">OAuth 2.0</span><span class="tag">Data API</span><span class="tag">Analytics API</span><span class="tag">Streamlit</span>
+        </div>
+        <div class="card-cta">Read the case study <span class="arw">→</span></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="creator" class="creator">
+  <div class="wrap creator-grid">
+    <div class="reveal">
+      <p class="sec-eyebrow">03 — THE OTHER HALF</p>
+      <h2 class="sec-title">Content creator &amp; channel owner</h2>
+      <p>Since 2025 I've run YouTube channels as a registered self-employed business (PFA). I handle everything: production, analytics, and the <a href="projects/youtube-toolkit.html" style="color:var(--amber)">toolkit I built</a> to automate publishing and pull performance data via the YouTube Data and Analytics APIs.</p>
+      <p>It's taught me things no course does — how to read data honestly, iterate fast on real feedback, and keep shipping when the algorithm doesn't care about your excuses. It's also the reason half the projects on this page exist: ClipForge cuts the shorts, and the toolkit publishes them.</p>
+    </div>
+    <div class="big-stats reveal">
+      <div class="big-stat"><div class="num">850K+</div><div class="lbl">TOTAL SUBSCRIBERS</div></div>
+      <div class="big-stat"><div class="num">530M+</div><div class="lbl">TOTAL VIEWS</div></div>
+      <div class="big-stat"><div class="num">2025</div><div class="lbl">SELF-EMPLOYED SINCE</div></div>
+      <div class="big-stat"><div class="num">100%</div><div class="lbl">OWNER-OPERATED</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-eyebrow">04 — TOOLKIT</p>
+    <h2 class="sec-title">Skills &amp; technologies</h2>
+    <p class="sec-sub">What I work with, from low-level languages to the concepts underneath them.</p>
+    <div class="skill-groups">
+      <div class="skill-group reveal">
+        <h3>LANGUAGES</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+          <span class="chip">C</span><span class="chip">C++</span><span class="chip">SQL</span>
+          <span class="chip">MATLAB</span><span class="chip">HTML</span><span class="chip">CSS</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>TOOLS &amp; STACK</h3>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">Node</span><span class="chip">React</span>
+          <span class="chip">Electron</span><span class="chip">FastAPI</span><span class="chip">Vite</span>
+          <span class="chip">Three.js</span><span class="chip">SQLite</span><span class="chip">ffmpeg</span>
+          <span class="chip">Linux</span><span class="chip">REST APIs</span><span class="chip">OAuth 2.0</span>
+          <span class="chip">Local LLMs</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>STRENGTHS</h3>
+        <div class="chips">
+          <span class="chip">Problem-solving</span>
+          <span class="chip">Analytical Thinking</span>
+          <span class="chip">Creativity</span>
+          <span class="chip">Communication</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="sec-eyebrow">05 — CONTACT</p>
+    <h2 class="sec-title">Let's talk</h2>
+    <p class="sec-sub">Looking for an internship where I can put both halves of my experience to work. If that sounds like a fit, reach out.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:bucurandrei187@gmail.com">Send an email</a>
+      <a class="btn btn-ghost" href="https://github.com/Babundru" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/andrei-sebastian-bucur" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> Built by hand, shipped with intent.</div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
