@@ -208,7 +208,7 @@ h2.sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:700;letter-spacing
   .card.featured .feat-label{grid-area:1/1/2/2}
   .card.featured .card-top{grid-area:2/1/3/2}
   .card.featured > p{grid-area:3/1/4/2}
-  .card.featured ul.hl{grid-area:4/1/5/2}
+  /* row 4 is an empty 1fr spacer that pushes the tags and CTA to the bottom */
   .card.featured .tag-row{grid-area:5/1/6/2}
   .card.featured .card-cta{grid-area:6/1/7/2}
   .card.featured .card-thumb{grid-area:1/2/7/3;aspect-ratio:auto;align-self:stretch}
@@ -228,7 +228,7 @@ h2.sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:700;letter-spacing
 .card p{color:var(--text-dim);font-size:.95rem}
 .card .foot{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--teal);margin-top:auto}
 
-/* card thumbnail + highlight bullets + "read case study" affordance */
+/* card thumbnail + "read case study" affordance */
 .card-thumb{
   border:1px solid var(--line);
   border-radius:10px;
@@ -244,11 +244,6 @@ h2.sec-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:700;letter-spacing
     repeating-linear-gradient(45deg, rgba(35,43,71,.5) 0 10px, transparent 10px 20px);
   text-align:center;padding:12px;
 }
-.card ul.hl{list-style:none;display:flex;flex-direction:column;gap:7px}
-.card ul.hl li{
-  display:flex;gap:9px;font-size:.9rem;color:var(--text-dim);line-height:1.5;
-}
-.card ul.hl li::before{content:"▸";color:var(--teal);flex-shrink:0}
 .card-cta{
   font-family:"JetBrains Mono",monospace;font-size:.75rem;
   color:var(--amber);display:inline-flex;align-items:center;gap:7px;
