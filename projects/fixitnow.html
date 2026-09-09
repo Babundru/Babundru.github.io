@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0E1A">
+<meta name="description" content="FixItNow — a C++ OOP simulation of a home-appliance repair service, with a tick-based allocation engine, skill-aware technician matching, and CSV reporting.">
+<title>FixItNow — Andrei-Sebastian Bucur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="wrap nav-inner">
+    <a class="logo" href="../index.html">bucur<span>.</span></a>
+    <div class="nav-links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="wrap">
+    <a class="back-link" href="../index.html#projects"><span class="arw">←</span> All projects</a>
+    <h1>FixItNow</h1>
+    <p class="case-tagline">A C++ simulation of a home-appliance repair service — employees, appliances, and incoming repair requests — run tick by tick until every technician's queue is empty, with reports to show for it.</p>
+    <div class="case-meta">
+      <span class="tag">C++</span><span class="tag">OOP</span><span class="tag">STL</span>
+      <span class="tag">Smart Pointers</span><span class="tag">CSV I/O</span>
+    </div>
+    <div class="case-links">
+      <a class="btn btn-primary btn-sm" href="https://github.com/Babundru/FixItNow" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+
+    <figure class="shot hero-shot">
+      <img src="../images/fixitnow/hero.png" alt="The FixItNow interactive menu in a terminal, listing employee, request and report options" loading="lazy">
+      <figcaption>The interactive menu — the same engine batch mode drives from the command line.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="case-sec">
+  <div class="wrap">
+    <h2>Key features</h2>
+    <div class="features">
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">01</span> Polymorphic employee &amp; appliance hierarchies</h3>
+          <p><code>Employee</code> and <code>Appliance</code> are abstract bases, not tags on a struct. <code>Technician</code>, <code>Receptionist</code> and <code>Supervisor</code> each compute their own salary and behaviour; <code>Refrigerator</code>, <code>TV</code> and <code>WashingMachine</code> each carry their own technical spec — so adding a new employee type or appliance model means writing one derived class, not touching a switch statement elsewhere in the codebase.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">02</span> Two ways to run it</h3>
+          <p>Launched with no arguments it's a menu-driven interactive tool for hiring staff, logging requests and pulling reports by hand. Launched with two CSV paths it does the same work in one automated pass — the mode that made it possible to script test scenarios instead of clicking through a menu for each one.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">03</span> A tick-based simulation loop</h3>
+          <p><code>ServiceManager</code> advances the whole shop one tick at a time: pending requests are matched to a technician who's both free and qualified, busy technicians count down their remaining repair time, and a request that hits zero flips to <code>Completed</code> and frees its technician for the next one.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">04</span> Skill-aware technician matching</h3>
+          <p>Technicians aren't interchangeable — a skill can be scoped to one brand (e.g. TV, Samsung only) or marked <code>All</code>. Allocation checks both availability and skill before assigning a request, so a Samsung-only technician never gets handed an LG repair just because they were free first.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">05</span> CSV reports on demand</h3>
+          <p>At any point the tool can dump the current state to CSV: pending tasks, per-technician workload and performance, and requests nobody was qualified for — the last one doubling as a hiring signal, since a pile of unsupported requests for one brand is an argument for the next hire.</p>
+        </div>
+      </div>
+
+      <div class="feature wide">
+        <div class="feature-text">
+          <h3><span class="idx">06</span> Parsing and hiring that don't trust the input</h3>
+          <p>CSV rows are wrapped in <code>try/catch</code>, so one bad line — a malformed date, a missing column — gets reported by line number and cause and skipped, instead of taking the whole batch run down with it. Hiring gets the same scrutiny: a new employee's CNP is checked for format and checksum, and their age is derived from it and enforced at a 16-year minimum, rather than trusted from a free-text field.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="case-sec">
+  <div class="wrap">
+    <div class="summary">
+      <h2>In short</h2>
+      <p>FixItNow is a from-scratch exercise in modelling a real process instead of a toy inheritance diagram — <code>Employee</code> and <code>Appliance</code> are abstract bases so behaviour lives in the subclass that owns it, and <code>shared_ptr</code> threads ownership through every <code>Request</code> without a manual <code>delete</code> in sight. The part that took longer than the class hierarchy was trusting the input: batch mode meant any row of a CSV could be malformed, so parsing has to report and skip a bad line instead of crashing the run, and even hiring an employee means validating a real CNP rather than a free-text age field.</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <nav class="case-nav">
+    <a class="prev" href="stock-watcher.html">
+      <div class="dir">← PREVIOUS</div>
+      <div class="nm">AI Stock Watcher</div>
+    </a>
+    <a class="next" href="signal-vs-noise.html">
+      <div class="dir">NEXT →</div>
+      <div class="nm">Signal vs. Noise</div>
+    </a>
+  </nav>
+</div>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Andrei-Sebastian Bucur<span>.</span> <a href="../index.html" style="color:var(--amber)">Back to portfolio</a></div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>
